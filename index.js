@@ -257,7 +257,8 @@ app.get("/api/csvCovid/new_diagnoses", (req, res) => {
 });
 
 app.get("/api/csvCovid/nd", (req, res) => {
-  fs.readFile('./../www/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {  //чтобы асинхронненько
+  //fs.readFile('./../www/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {  //чтобы асинхронненько
+  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data-small.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
     }
