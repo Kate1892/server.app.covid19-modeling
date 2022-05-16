@@ -32,7 +32,7 @@ reg_num0 = sys.argv[2]
 reg_num = int(reg_num0)
 print(reg_num)
 print("!!!")
-print sys.path()
+print(sys.path())
 
 location = None
 data_csv = None
