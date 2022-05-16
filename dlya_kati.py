@@ -40,15 +40,15 @@ state_url = None
 #print(reg_num)
 if reg_num == 1:
     location='Novosibirsk'
-    state_url = './../www/covid19-modeling.ru/data/novosibirsk-region-data-small.csv'
+    state_url = '/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data-small.csv'
     data_csv="Novosibirsk.csv"
 elif reg_num == 2:
     location='Omsk'
-    state_url = './../www/covid19-modeling.ru/data/omsk-region-data.csv'
+    state_url = '/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/omsk-region-data.csv'
     data_csv="Omsk.csv"
 else :
     location='Altai'
-    state_url = './../www/covid19-modeling.ru/data/altay-region-data.csv'
+    state_url = '/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv'
     data_csv="Altai.csv"
 
 print(location)
