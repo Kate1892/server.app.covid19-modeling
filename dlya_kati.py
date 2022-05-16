@@ -8,7 +8,7 @@ import covasim as cv
 import scipy as sp
 import optuna as op
 import pandas as pd
-from .datetime import datetime, date
+from datetime import datetime, date
 import json
 import pylab as pl
 import matplotlib.dates as mdates
@@ -16,14 +16,14 @@ import matplotlib.dates as mdates
 import random
 import time
 
-from .functions_total import *  # all auxiliary functions
+from functions_total import *  # all auxiliary functions
 
 
 import warnings
 warnings.filterwarnings("ignore")
 
 import calibration_total as st
-from .calibration_total import model
+from calibration_total import model
 
 # basic parameters for Novosibirsk
 #print("!")
