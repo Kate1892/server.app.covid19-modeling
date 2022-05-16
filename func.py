@@ -10,6 +10,8 @@ from statsmodels.tools.validation import array_like, PandasWrapper
 import warnings
 warnings.filterwarnings("ignore")
 
+import sys
+sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
 
 def parse_data(state='all-states'):
     """

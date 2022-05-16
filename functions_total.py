@@ -33,6 +33,8 @@ warnings.filterwarnings("ignore")
 import calibration_total as st
 from calibration_total import model
 
+import sys
+sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
 # Supporting functions
 
 def smooth(y):
@@ -583,6 +585,7 @@ def prognose(forecast_data, start_day, location, pop_location, p, to_plot, b_day
        jsonnamemsim - name of the json file to save
     '''
     #end_date=cv.date(forecast_data.index[-1].to_pydatetime().date())
+    print("!!!")
     end_date=cv.date(forecast_data.index[-1])
     sim=run_model(p=p, location=location, pop_location=pop_location, start_day=start_day, end_day=end_date,
                   b_days=b_days, b_changes=b_changes, data=forecast_data, run=run_sim,

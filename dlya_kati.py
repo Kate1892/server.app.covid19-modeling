@@ -25,7 +25,7 @@ import calibration_total as st
 from calibration_total import model
 
 import sys
-
+sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
 # basic parameters for Novosibirsk
 #print("!")
 reg_num0 = sys.argv[2]
