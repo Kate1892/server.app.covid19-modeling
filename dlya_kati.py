@@ -32,8 +32,6 @@ reg_num = int(reg_num0)
 print(reg_num)
 print("!!!")
 
-ff()
-
 location = None
 data_csv = None
 state_url = None
