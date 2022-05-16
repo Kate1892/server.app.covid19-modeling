@@ -13,7 +13,7 @@ from random import shuffle
 import warnings
 from datetime import timedelta
 warnings.filterwarnings('ignore')
-from func import *
+from .func import *
 from tqdm import tqdm_notebook as tqdm
 
 def invboxcox(series,lmb):
