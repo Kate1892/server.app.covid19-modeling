@@ -6,15 +6,15 @@ import statsmodels.formula.api as smf
 import statsmodels.tsa.api as smt
 import statsmodels.api as sm
 import scipy.stats as scs
-from scipy.optimize import minimize
+from .scipy.optimize import minimize
 
-from itertools import product
-from random import shuffle
+from .itertools import product
+from .random import shuffle
 import warnings
-from datetime import timedelta
+from .datetime import timedelta
 warnings.filterwarnings('ignore')
 from .func import *
-from tqdm import tqdm_notebook as tqdm
+from .tqdm import tqdm_notebook as tqdm
 
 def invboxcox(series,lmb):
     """

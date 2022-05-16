@@ -8,7 +8,7 @@ import covasim as cv
 import scipy as sp
 import optuna as op
 import pandas as pd
-from datetime import datetime, date
+from .datetime import datetime, date
 import json
 import pylab as pl
 import matplotlib.dates as mdates

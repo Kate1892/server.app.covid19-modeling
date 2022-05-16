@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from .datetime import datetime
 import os
 
-from scipy import sparse
-from scipy.sparse.linalg import spsolve
-from statsmodels.tools.validation import array_like, PandasWrapper
+from .scipy import sparse
+from .scipy.sparse.linalg import spsolve
+from .statsmodels.tools.validation import array_like, PandasWrapper
 
 import warnings
 warnings.filterwarnings("ignore")
