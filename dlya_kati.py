@@ -15,14 +15,14 @@ import matplotlib.dates as mdates
 import random
 import time
 
-from functions_total import *  # all auxiliary functions
+from .functions_total import *  # all auxiliary functions
 
 
 import warnings
 warnings.filterwarnings("ignore")
 
 import calibration_total as st
-from calibration_total import model
+from .calibration_total import model
 
 import sys
 sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
@@ -32,7 +32,7 @@ reg_num0 = sys.argv[2]
 reg_num = int(reg_num0)
 print(reg_num)
 print("!!!")
-print(sys.path())
+
 
 location = None
 data_csv = None
