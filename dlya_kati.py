@@ -135,8 +135,9 @@ n_future0 = sys.argv[3]
 n_future=int(n_future0)
 print(n_future)
 #n_future=45 # на сколько дней вперед делать прогноз
-
+print("!!!")
 forecast=future_extr(filename=data_csv, end_day=last_day, n_future=n_future)
+print("!!!")
 forecast=pd.Series(smooth(forecast),index=[df1.index[-1] + timedelta(days=i) for i in range(1, n_future+2)])
 forecast.name ='new_tests'
 forecast = forecast.to_frame()
