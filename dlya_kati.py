@@ -18,7 +18,7 @@ import random
 import time
 
 from functions_total import *  # all auxiliary functions
-
+from tt import *
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -33,6 +33,7 @@ reg_num = int(reg_num0)
 print(reg_num)
 print("!!!")
 
+ff()
 
 location = None
 data_csv = None
