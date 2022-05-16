@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
+sys.path.append('/root/server/server.app.covid19-modeling/')
 
 import pandas as pd
 import numpy as np
