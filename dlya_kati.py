@@ -18,7 +18,7 @@ import random
 import time
 
 from functions_total import *  # all auxiliary functions
-from tt import *
+from .tt import *
 
 import warnings
 warnings.filterwarnings("ignore")
