@@ -1,6 +1,5 @@
 import sys
-sys.path.append('/root/server/server.app.covid19-modeling/')
-
+print(sys.path)
 import numpy as np
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
