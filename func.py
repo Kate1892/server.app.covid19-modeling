@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/root/server/server.app.covid19-modeling/')
-
 import pandas as pd
 import numpy as np
 from datetime import datetime

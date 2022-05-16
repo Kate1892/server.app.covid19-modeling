@@ -1,5 +1,4 @@
 import sys
-print(sys.path)
 import numpy as np
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
@@ -17,14 +16,14 @@ import matplotlib.dates as mdates
 import random
 import time
 
-from functions_total import *  # all auxiliary functions
+from .functions_total import *  # all auxiliary functions
 from .tt import *
 
 import warnings
 warnings.filterwarnings("ignore")
 
-import calibration_total as st
-from calibration_total import model
+import .calibration_total as st
+from .calibration_total import model
 
 # basic parameters for Novosibirsk
 #print("!")
