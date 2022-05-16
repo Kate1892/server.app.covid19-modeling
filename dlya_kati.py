@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
+
 import numpy as np
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
@@ -23,8 +26,6 @@ warnings.filterwarnings("ignore")
 
 import calibration_total as st
 from calibration_total import model
-
-import sys
 
 # basic parameters for Novosibirsk
 #print("!")

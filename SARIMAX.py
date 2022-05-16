@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '/root/server/server.app.covid19-modeling/')
+
 import pandas as pd
 import numpy as np
 
@@ -14,16 +17,16 @@ import warnings
 from datetime import timedelta
 warnings.filterwarnings('ignore')
 from func import *
-from tqdm import tqdm_notebook as tqdm     
+from tqdm import tqdm_notebook as tqdm
 
 def invboxcox(series,lmb):
     """
     Обратное преобразование Бокса-Кокса.
-    
+
     Args:
         series (pd.Series): временной ряд
         lmb (float): параметр преобразования Бокса-Кокса
-    
+
     Returns:
         1. result: результат обратного преобразования
     """
@@ -31,12 +34,12 @@ def invboxcox(series,lmb):
         return(np.exp(series))
     else:
         return(np.exp(np.log(lmb*series+1)/lmb))
-    
+
 def tsplot(series, lags=None):
     """
     Функция отрисовки ряда, авткороллеяции и частичной автокорреляции, а также проведения расширенного \
 теста Дики-Фуллера о нестационарности.
-    
+
     Args:
         series (pd.Series): временной ряд
         lags (int): максимальный лаг на графике автокорреляции
@@ -52,11 +55,11 @@ def tsplot(series, lags=None):
     smt.graphics.plot_pacf(series, lags=lags, ax=pacf_ax, alpha=0.5)
     print("Критерий Дики-Фуллера: p=%f" % sm.tsa.stattools.adfuller(series)[1])
     plt.tight_layout()
-    
+
 def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
     """
     Находит модель SARIMAX с оптимальными параметрами на основании минимизации AIC.
-    
+
     Args:
         series (pd.Series): временной ряд
         d (int): порядок разности временного ряда, после которого ряд становится стационарным
@@ -65,7 +68,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         parameters_list (list): список из определенныз параметров [p,q,P,Q] модели SARIMA, с которыми должна\
 строиться модель (подбор оптимального набора параметров не производится).
         args (dict): словарь некоторых аргументов со значениями функции sm.tsa.statespace.SARIMAX()
-    
+
     Returns:
         1. best_model: модель SARIMAX
         2. best_params: набор оптимальных параметров
@@ -80,12 +83,12 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         parameters_list = list(parameters_list)
     else:
         parameters_list = [parameters_list]
-        
+
     best_aic = float("inf")
-    
+
     for param in tqdm(parameters_list):
-        model=sm.tsa.statespace.SARIMAX(series[:-n_past], 
-                                        order = (param[0], d, param[1]), 
+        model=sm.tsa.statespace.SARIMAX(series[:-n_past],
+                                        order = (param[0], d, param[1]),
                                         seasonal_order = (param[2], D, param[3], 7),
                                         **args).fit(disp=-1)
         aic = model.aic
@@ -97,13 +100,13 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
 
 def get_predict(series,model,n_past,n_future,lmb):
     result = invboxcox(model.fittedvalues, lmb)
-    
-    forecast = invboxcox(model.predict(start = series.index.size - n_past, 
+
+    forecast = invboxcox(model.predict(start = series.index.size - n_past,
                                        end = series.index.size + n_future), lmb)
     forecast.index = [series.index[-n_past] + timedelta(days=i) for i in range(n_past+n_future+1)]
     forecast = result.append(forecast)
     #forecast = nan_interpolation(forecast,interpolation_method='linear',q=0.997)
-    
+
     return forecast
 
 def plot_SARIMAX(series,model,n_past, n_future, lmb):
