@@ -1,4 +1,4 @@
-import numpy as np
+#import numpy as np
 print("!!!")
 '''
 import matplotlib.ticker as ticker
