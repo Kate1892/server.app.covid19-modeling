@@ -159,7 +159,7 @@ def future_extr(filename, end_day, n_future, n_past=2, dday=None):
         n_future - how many points to extrapolate (better to fill Nans: n=df['new_tests'].isna().sum())'
 
     '''
-'''
+    print("fun start")
     df = pd.read_csv(filename, index_col=0, parse_dates=True)
     if dday is not None:
         df=df[:dday]
@@ -184,8 +184,7 @@ def future_extr(filename, end_day, n_future, n_past=2, dday=None):
     forecast=forecast_SARIMAX[date:]
 
     return forecast
-'''
-    print("from total")
+
 
 
 def bounds_of_per(start_day, end_day, window=30):
