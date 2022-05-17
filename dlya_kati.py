@@ -155,7 +155,7 @@ to_plot=['new_diagnoses']
 now_data = sys.argv[5]
 jsonnamemsim=f'users_msim_res_{reg_num}_{pop_location}_{init_inf}_{n_future}_{now_data}.json' ####
 print(now_data)
-print("data?")
+print(jsonnamemsim)
 # do prognose
 prognose(forecast_data=forecast_data, start_day=start_day, location=location, pop_location=pop_location, p=p,
          to_plot=to_plot, b_days=b_days, b_changes=b_changes, school_days=school_days,
