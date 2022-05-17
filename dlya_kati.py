@@ -1,5 +1,6 @@
 #import numpy as np
-import matplotlib.ticker as ticker
+#import matplotlib.ticker as ticker
+import covasim as cv
 print("!!!")
 '''
 import matplotlib.pyplot as plt
