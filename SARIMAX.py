@@ -71,6 +71,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         2. best_params: набор оптимальных параметров
         3. best_aic: минимальное значение AIC метрики с оптимальными параметрами
     """
+    print("sarimax")
     if parameters_list is None:
         ps = range(0, 7)
         qs = range(0, 7)
@@ -96,6 +97,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
     return best_model, best_params, best_aic
 
 def get_predict(series,model,n_past,n_future,lmb):
+    print("get_predict")
     result = invboxcox(model.fittedvalues, lmb)
 
     forecast = invboxcox(model.predict(start = series.index.size - n_past,
