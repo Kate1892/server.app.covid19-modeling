@@ -14,7 +14,8 @@ import warnings
 from datetime import timedelta
 warnings.filterwarnings('ignore')
 from func import *
-from tqdm import tqdm_notebook as tqdm
+#from tqdm import tqdm_notebook as tqdm
+from tqdm import tqdm
 
 
 
@@ -87,7 +88,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
 
     best_aic = float("inf")
 
-    for param in parameters_list:
+    for param in tqdm(parameters_list):
         print("???")
         model=sm.tsa.statespace.SARIMAX(series[:-n_past],
                                         order = (param[0], d, param[1]),
