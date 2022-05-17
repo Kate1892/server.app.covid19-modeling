@@ -14,8 +14,8 @@ import warnings
 from datetime import timedelta
 warnings.filterwarnings('ignore')
 from func import *
-#from tqdm import tqdm_notebook as tqdm
-from tqdm.notebook import tqdm
+from tqdm import tqdm_notebook as tqdm
+
 
 
 def invboxcox(series,lmb):
@@ -87,6 +87,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
 
     best_aic = float("inf")
 
+    print(tqdm.__version__)
     for param in tqdm(parameters_list):
         print("sarimaxgin")
         model=sm.tsa.statespace.SARIMAX(series[:-n_past],
