@@ -81,7 +81,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         parameters_list = list(parameters_list)
     else:
         parameters_list = [parameters_list]
-
+        print(parameters_list)
 
     best_aic = float("inf")
     for param in tqdm(parameters_list):
