@@ -4,7 +4,7 @@ import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import pylab as pl
 import sciris as sc
-import covasim as cv
+#import covasim as cv
 print("!!!")
 """
 import scipy as sp
