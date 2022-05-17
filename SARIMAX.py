@@ -87,7 +87,6 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
 
     best_aic = float("inf")
 
-    print(tqdm.__version__)
     for param in tqdm(parameters_list):
         print("sarimaxgin")
         model=sm.tsa.statespace.SARIMAX(series[:-n_past],

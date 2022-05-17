@@ -25,7 +25,7 @@ import matplotlib.dates as mdates
 
 from datetime import datetime, date, timedelta
 
-from tqdm import tqdm
+#from tqdm import tqdm
 from func import *
 from SARIMAX import *
 
@@ -159,7 +159,7 @@ def future_extr(filename, end_day, n_future, n_past=2, dday=None):
         n_future - how many points to extrapolate (better to fill Nans: n=df['new_tests'].isna().sum())'
 
     '''
-    print("fun start")
+    print("fun")
     df = pd.read_csv(filename, index_col=0, parse_dates=True)
     if dday is not None:
         df=df[:dday]
