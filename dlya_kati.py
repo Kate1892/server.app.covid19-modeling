@@ -11,7 +11,6 @@ import pandas as pd
 from datetime import datetime, date
 
 import json
-import pylab as pl
 import matplotlib.dates as mdates
 
 import random
