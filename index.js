@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D/M/YYYY'));
 function intervalDelFunc() {
-  var data_to_delete = moment().subtract(2, 'days').format('M/D/YYYY')
+  var data_to_delete = moment().subtract(0, 'days').format('M/D/YYYY')
   console.log(data_to_delete)
   var filter = fileMatch('*_'+data_to_delete+'.json');
   const testFolder = './';
