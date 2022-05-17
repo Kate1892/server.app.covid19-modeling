@@ -135,8 +135,9 @@ n_future0 = sys.argv[3]
 n_future=int(n_future0)
 print(n_future)
 #n_future=45 # на сколько дней вперед делать прогноз
-
+print("!!!")
 forecast=future_extr(filename=data_csv, end_day=last_day, n_future=n_future)
+print("!!!")
 forecast=pd.Series(smooth(forecast),index=[df1.index[-1] + timedelta(days=i) for i in range(1, n_future+2)])
 forecast.name ='new_tests'
 forecast = forecast.to_frame()
@@ -153,7 +154,7 @@ plot=False
 to_plot=['new_diagnoses']
 now_data = sys.argv[5]
 jsonnamemsim=f'users_msim_res_{reg_num}_{pop_location}_{init_inf}_{n_future}_{now_data}.json' ####
-
+print("!!!")
 # do prognose
 prognose(forecast_data=forecast_data, start_day=start_day, location=location, pop_location=pop_location, p=p,
          to_plot=to_plot, b_days=b_days, b_changes=b_changes, school_days=school_days,
