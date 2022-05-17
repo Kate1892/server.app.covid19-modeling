@@ -1,8 +1,9 @@
-#import numpy as np
-#import matplotlib.ticker as ticker
-import covasim as cv
+import math
 print("!!!")
-'''
+
+"""
+import numpy as np
+import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import pylab as pl
 import sciris as sc
@@ -159,4 +160,4 @@ jsonnamemsim=f'users_msim_res_{reg_num}_{pop_location}_{init_inf}_{n_future}_{no
 prognose(forecast_data=forecast_data, start_day=start_day, location=location, pop_location=pop_location, p=p,
          to_plot=to_plot, b_days=b_days, b_changes=b_changes, school_days=school_days,
          school_changes=school_changes, n_runs=n_runs, save=save, namemsim=namesim, plot=plot, jsonnamemsim=jsonnamemsim) #последний параметр
-'''
+"""
