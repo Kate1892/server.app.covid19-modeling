@@ -139,7 +139,7 @@ function run_model(tt, region_num, n_future, init_inf, req, res){
     console.log(region_num)
     var now_data = new Date().toLocaleDateString();
     console.log(now_data)
-    const process = spawn('python3', ['./tt.py', tt, region_num, n_future, init_inf, now_data]);
+    const process = spawn('python3', ['./dlya_kati.py', tt, region_num, n_future, init_inf, now_data]);
     process.stdout.on('data', (data) => {
       console.log(data.toString());
     })
