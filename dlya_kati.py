@@ -1,7 +1,7 @@
 #import numpy as np
+import matplotlib.ticker as ticker
 print("!!!")
 '''
-import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import pylab as pl
 import sciris as sc
