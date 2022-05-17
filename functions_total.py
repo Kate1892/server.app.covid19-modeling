@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import pylab as pl
 import sciris as sc
 import scipy as sp
+import scipy.stats as scs
 import covasim as cv
 import optuna as op
 import pandas as pd
