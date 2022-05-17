@@ -3,8 +3,6 @@ import numpy as np
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import pylab as pl
-print("!!!")
-"""
 import sciris as sc
 import covasim as cv
 import scipy as sp
@@ -18,6 +16,8 @@ import matplotlib.dates as mdates
 import random
 import time
 
+print("!!!")
+"""
 from functions_total import *  # all auxiliary functions
 
 
