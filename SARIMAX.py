@@ -74,7 +74,6 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         2. best_params: набор оптимальных параметров
         3. best_aic: минимальное значение AIC метрики с оптимальными параметрами
     """
-    print("sarimax")
     if parameters_list is None:
         ps = range(0, 7)
         qs = range(0, 7)
@@ -89,23 +88,19 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
     best_aic = float("inf")
 
     for param in tqdm(parameters_list):
-        print("???")
         model=sm.tsa.statespace.SARIMAX(series[:-n_past],
                                         order = (param[0], d, param[1]),
                                         seasonal_order = (param[2], D, param[3], 7),
                                         **args).fit(disp=-1)
 
-        print("sarimaxgfor")
         aic = model.aic
         if aic < best_aic:
             best_model = model
             best_aic = aic
             best_params = param
-    print("sarimax")
     return best_model, best_params, best_aic
 
 def get_predict(series,model,n_past,n_future,lmb):
-    print("get_predict")
     result = invboxcox(model.fittedvalues, lmb)
 
     forecast = invboxcox(model.predict(start = series.index.size - n_past,
