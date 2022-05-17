@@ -94,6 +94,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
             best_model = model
             best_aic = aic
             best_params = param
+    print("sarimax")
     return best_model, best_params, best_aic
 
 def get_predict(series,model,n_past,n_future,lmb):
