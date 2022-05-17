@@ -2,10 +2,10 @@ import math
 import numpy as np
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
-print("!!!")
-"""
 import pylab as pl
 import sciris as sc
+print("!!!")
+"""
 import covasim as cv
 import scipy as sp
 import optuna as op
