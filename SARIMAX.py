@@ -15,8 +15,8 @@ from datetime import timedelta
 warnings.filterwarnings('ignore')
 from func import *
 #from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
-from tqdm import tqdm
 
 def invboxcox(series,lmb):
     """
