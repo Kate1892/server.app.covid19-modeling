@@ -30,7 +30,7 @@ function intervalDelFunc() {
 
   fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
-      print(file)
+        console.log(file)
       if (filter(file)) {
         console.log("нашли файл для удаления")
         fs.unlink(file, err => {
