@@ -16,7 +16,8 @@ import matplotlib.dates as mdates
 
 import random
 import time
-
+print("!!!")
+"""
 from functions_total import *  # all auxiliary functions
 
 
@@ -27,8 +28,7 @@ import calibration_total as st
 from calibration_total import model
 
 import sys
-print("!!!")
-"""
+
 # basic parameters for Novosibirsk
 #print("!")
 reg_num0 = sys.argv[2]
