@@ -21,9 +21,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
 //удаление ненужных файлов
-console.log(moment().subtract(0, 'days').format('DD.MM.YYYY'));
+console.log(moment().subtract(0, 'days').format('DD/MM/YYYY'));
 function intervalDelFunc() {
-  var data_to_delete = moment().subtract(2, 'days').format('DD.MM.YYYY')
+  var data_to_delete = moment().subtract(2, 'days').format('DD/MM/YYYY')
 
   var filter = fileMatch('*_'+data_to_delete+'.json');
   const testFolder = './';
@@ -41,7 +41,8 @@ function intervalDelFunc() {
   })
 }
 
-setInterval(intervalDelFunc, 86400);
+//setInterval(intervalDelFunc, 86400);
+setInterval(intervalDelFunc, 4000);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {

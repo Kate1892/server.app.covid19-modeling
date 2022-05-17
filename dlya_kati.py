@@ -15,7 +15,7 @@ import matplotlib.dates as mdates
 
 import random
 import time
-print("!!!")
+
 
 from functions_total import *  # all auxiliary functions
 
@@ -33,7 +33,7 @@ import sys
 reg_num0 = sys.argv[2]
 reg_num = int(reg_num0)
 print(reg_num)
-print("!!!")
+
 
 location = None
 data_csv = None
