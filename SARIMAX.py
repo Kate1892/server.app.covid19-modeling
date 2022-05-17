@@ -73,7 +73,6 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
     """
     print("sarimax")
     if parameters_list is None:
-        print("sarimaxnone")
         ps = range(0, 7)
         qs = range(0, 7)
         Ps = [0,1]
@@ -81,13 +80,12 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         parameters_list = product(ps, qs, Ps, Qs)
         parameters_list = list(parameters_list)
     else:
-        print("sarimaxnenone")
         parameters_list = [parameters_list]
-        print("sarimaxgbe")
+
 
     best_aic = float("inf")
-    print("sarimaxgbefor")
     for param in tqdm(parameters_list):
+        print("sarimaxgin")
         model=sm.tsa.statespace.SARIMAX(series[:-n_past],
                                         order = (param[0], d, param[1]),
                                         seasonal_order = (param[2], D, param[3], 7),
