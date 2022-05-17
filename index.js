@@ -26,7 +26,7 @@ function intervalDelFunc() {
   var data_to_delete = moment().subtract(0, 'days').format('M/D/YYYY')
   console.log(data_to_delete)
   var filter = fileMatch('*_'+data_to_delete+'.json');
-  const testFolder = './';
+  const testFolder = '/root/server/server.app.covid19-modeling';
 
   fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
