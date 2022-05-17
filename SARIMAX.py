@@ -73,6 +73,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
     """
     print("sarimax")
     if parameters_list is None:
+        print("sarimaxnone")
         ps = range(0, 7)
         qs = range(0, 7)
         Ps = [0,1]
@@ -80,6 +81,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
         parameters_list = product(ps, qs, Ps, Qs)
         parameters_list = list(parameters_list)
     else:
+        print("sarimaxnenone")
         parameters_list = [parameters_list]
 
     best_aic = float("inf")
@@ -89,6 +91,7 @@ def best_SARIMAX(series, d,D, n_past, parameters_list=None,args={}):
                                         order = (param[0], d, param[1]),
                                         seasonal_order = (param[2], D, param[3], 7),
                                         **args).fit(disp=-1)
+        print("sarimaxgfor")
         aic = model.aic
         if aic < best_aic:
             best_model = model
