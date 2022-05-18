@@ -23,14 +23,14 @@ app.use(bodyParser.json());
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
-  var data_to_delete = moment().subtract(0, 'days').format('M.D.YYYY')
+  var data_to_delete = moment().subtract(2, 'days').format('M.D.YYYY')
   console.log(data_to_delete)
   var filter = fileMatch('*_'+data_to_delete+'.json');
   const testFolder = '/root/server/server.app.covid19-modeling';
 
   fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
-        console.log(file)
+        //console.log(file)
       if (filter(file)) {
         console.log("нашли файл для удаления")
         fs.unlink(file, err => {
@@ -44,8 +44,8 @@ function intervalDelFunc() {
   })
 }
 
-//setInterval(intervalDelFunc, 86400);
-setInterval(intervalDelFunc, 4000);
+setInterval(intervalDelFunc, 86400);
+//setInterval(intervalDelFunc, 4000);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
