@@ -21,9 +21,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
 //удаление ненужных файлов
-console.log(moment().subtract(0, 'days').format('D/M/YYYY'));
+console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
-  var data_to_delete = moment().subtract(0, 'days').format('M/D/YYYY')
+  var data_to_delete = moment().subtract(0, 'days').format('M.D.YYYY')
   console.log(data_to_delete)
   var filter = fileMatch('*_'+data_to_delete+'.json');
   const testFolder = '/root/server/server.app.covid19-modeling';
@@ -44,8 +44,8 @@ function intervalDelFunc() {
   })
 }
 
-setInterval(intervalDelFunc, 86400);
-//setInterval(intervalDelFunc, 4000);
+//setInterval(intervalDelFunc, 86400);
+setInterval(intervalDelFunc, 4000);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
@@ -77,7 +77,7 @@ app.get("/getMsim", (req, res) => {
 
 app.post("/getUMsim2", urlencodedParser, (req, res) => { //условное по параметрам чтение файла
   //  var now_data = new Date().toLocaleDateString();
-  var now_data = moment().subtract(0, 'days').format('M/D/YYYY')
+  var now_data = moment().subtract(0, 'days').format('M.D.YYYY')
   console.log('./users_msim_res_'+req.body.region_data+'_'+req.body.population_data+'_'+ req.body.init_inf+'_'+req.body.n_future_day+'_'+now_data+'.json')
   //fs.readFile('./Users_msim_res.json', 'utf8', async (error, data) => {  //чтобы асинхронненько
   fs.readFile('./users_msim_res_'+req.body.region_data+'_'+req.body.population_data+'_'+ req.body.init_inf+'_'+req.body.n_future_day+'_'+now_data+'.json', 'utf8', async (error, data) => {
@@ -143,7 +143,7 @@ function run_model(tt, region_num, n_future, init_inf, req, res){
     console.log(tt)
     console.log(region_num)
   //  var now_data = new Date().toLocaleDateString();
-    var now_data = moment().subtract(0, 'days').format('M/D/YYYY')
+    var now_data = moment().subtract(0, 'days').format('M.D.YYYY')
     console.log(now_data)
     const process = spawn('python3.10', ['./dlya_kati.py', tt, region_num, n_future, init_inf, now_data]);
     process.stdout.on('data', (data) => {

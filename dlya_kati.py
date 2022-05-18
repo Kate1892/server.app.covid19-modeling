@@ -153,7 +153,7 @@ plot=False
 #to_plot=['new_diagnoses','new_deaths','new_recoveries','new_severe','new_critical']
 to_plot=['new_diagnoses']
 now_data = sys.argv[5]
-jsonnamemsim=f'umsim{reg_num}_{pop_location}_{init_inf}_{n_future}_{now_data}.json' ####
+jsonnamemsim=f'users_msim_res_{reg_num}_{pop_location}_{init_inf}_{n_future}_{now_data}.json' ####
 print(now_data)
 print(jsonnamemsim)
 # do prognose
