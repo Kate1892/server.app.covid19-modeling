@@ -45,7 +45,7 @@ function intervalDelFunc() {
 }
 
 //setInterval(intervalDelFunc, 86400);
-//setInterval(intervalDelFunc, 4000);
+setInterval(intervalDelFunc, 4000);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
