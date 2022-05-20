@@ -7,6 +7,7 @@ const cluster = require('cluster')
 const os = require('os')
 const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
+const nodePickle = require('node-pickle');
 const app=express() //инициализация приложения
 
 app.use(cors())
@@ -20,6 +21,9 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
+nodePickle.load('./SOVID19_forecast.p')
+.then(data => ({}
+))
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {

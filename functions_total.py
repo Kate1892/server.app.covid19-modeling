@@ -458,7 +458,7 @@ def run_msim_conf(sim, to_plot, n_runs=1, save=True, namemsim=None, plot=True, j
         to_plot - list of statistics to plot
 
     '''
-    msim = cv.MultiSim(sim, n_runs = n_runs, parallel=False, verbose=0)
+    msim = cv.MultiSim(sim, n_runs = n_runs, verbose=0)
     msim.run()
     msim.reduce()
     if save:
