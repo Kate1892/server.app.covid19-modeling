@@ -7,7 +7,7 @@ const cluster = require('cluster')
 const os = require('os')
 const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
-const nodePickle = require('node-pickle');
+//const nodePickle = require('node-pickle');
 const app=express() //инициализация приложения
 
 app.use(cors())
