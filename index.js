@@ -21,9 +21,9 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
-nodePickle.load('./SOVID19_forecast.p')
-.then(data => ({}
-))
+//nodePickle.load('./SOVID19_forecast.p')
+//.then(data => ({}
+//))
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
