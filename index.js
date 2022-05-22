@@ -48,7 +48,7 @@ function intervalDelFunc() {
   })
 }
 
-setInterval(intervalDelFunc, 86400);
+setInterval(intervalDelFunc, 86400000);
 //setInterval(intervalDelFunc, 4000);
 ////
 
