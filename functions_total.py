@@ -22,6 +22,8 @@ import covasim as cv
 import optuna as op
 import pandas as pd
 import matplotlib.dates as mdates
+import multiprocessing
+
 
 from datetime import datetime, date, timedelta
 
@@ -459,6 +461,7 @@ def run_msim_conf(sim, to_plot, n_runs=1, save=True, namemsim=None, plot=True, j
 
     '''
 
+    print(multiprocessing.cpu_count())
     msim = cv.MultiSim(sim, n_runs = n_runs, verbose=0)
     msim.run()
     msim.reduce()
