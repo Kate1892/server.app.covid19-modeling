@@ -464,6 +464,8 @@ def run_msim_conf(sim, to_plot, n_runs=1, save=True, namemsim=None, plot=True, j
          print("__main!")
          msim.run()
          msim.reduce()
+    else:
+         print("__main!-!")
     #msim.run()
     #msim.reduce()
     if save:
