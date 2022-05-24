@@ -458,9 +458,13 @@ def run_msim_conf(sim, to_plot, n_runs=1, save=True, namemsim=None, plot=True, j
         to_plot - list of statistics to plot
 
     '''
-    msim = cv.MultiSim(sim, n_runs = n_runs, parallel=False, verbose=0)
-    msim.run()
-    msim.reduce()
+
+    msim = cv.MultiSim(sim, n_runs = n_runs, verbose=0)
+    if __name__ == '__main__':
+         msim.run()
+         msim.reduce()
+    #msim.run()
+    #msim.reduce()
     if save:
         #msim.save(namemsim)
         #msim.to_json("msim_res.json")
