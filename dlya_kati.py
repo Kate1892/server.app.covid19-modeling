@@ -16,6 +16,8 @@ import matplotlib.dates as mdates
 import random
 import time
 
+import multiprocessing
+print(multiprocessing.cpu_count())
 
 from functions_total import *  # all auxiliary functions
 
