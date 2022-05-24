@@ -460,12 +460,6 @@ def run_msim_conf(sim, to_plot, n_runs=1, save=True, namemsim=None, plot=True, j
     '''
 
     msim = cv.MultiSim(sim, n_runs = n_runs, verbose=0)
-#    if __name__ == '__main__':
-         #print("__main!")
-         #msim.run()
-         #msim.reduce()
-    #else:
-         #print("__main!-!")
     msim.run()
     msim.reduce()
     if save:
