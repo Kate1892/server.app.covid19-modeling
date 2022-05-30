@@ -20,6 +20,13 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
+
+//const process2 = spawn('python', ['./parsingSOVID_forecasts.py']);
+//process2.stdout.on('data', (data) => {
+//  console.log("parsing is over")
+//  console.log(data.toString());
+//})
+
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
@@ -44,7 +51,7 @@ function intervalDelFunc() {
   })
 }
 
-setInterval(intervalDelFunc, 86400);
+//setInterval(intervalDelFunc, 86400);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
@@ -108,7 +115,7 @@ function run_model(tt, region_num, n_future, init_inf, req, res){
       })
     })
   } else if(region_num==3){
-    fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {  
+    fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
       if (error) {
         return console.log('error reading file');
       }
@@ -219,5 +226,65 @@ app.get("/api/csvCovid/omsk", (req, res) => {
     res.send(data2)
   });
 });
+
+app.get("/api/res_valid", (req, res) => {
+  fs.readFile('../www/covid19-modeling.ru/SEIR_HCD/res_valid.csv', 'utf8', async (error, data) => {
+    if (error) {
+      return console.log('error reading file!');
+    }
+    const parsedData = await neatCsv(data);
+    let data2 = JSON.stringify(parsedData);
+    res.send(data2)
+  });
+});
+
+app.get("/api/res_train", (req, res) => {
+  fs.readFile('../www/covid19-modeling.ru/SEIR_HCD/res_train.csv', 'utf8', async (error, data) => {
+    if (error) {
+      return console.log('error reading file!');
+    }
+    const parsedData = await neatCsv(data);
+    let data2 = JSON.stringify(parsedData);
+    //console.log(data2)
+    res.send(data2)
+  });
+});
+
+app.get("/api/forecasts", (req, res) => {
+  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_pred.csv', 'utf8', async (error, data) => {
+    if (error) {
+      return console.log('error reading file!');
+    }
+    const parsedData = await neatCsv(data);
+    let data2 = JSON.stringify(parsedData);
+    //console.log(data2)
+    res.send(data2)
+  });
+});
+
+app.get("/api/forecasts_true", (req, res) => {
+  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_true.csv', 'utf8', async (error, data) => {
+    if (error) {
+      return console.log('error reading file!');
+    }
+    const parsedData = await neatCsv(data);
+    let data2 = JSON.stringify(parsedData);
+    //console.log(data2)
+    res.send(data2)
+  });
+});
+
+app.get("/api/forecasts_train", (req, res) => {
+  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_train.csv', 'utf8', async (error, data) => {
+    if (error) {
+      return console.log('error reading file!');
+    }
+    const parsedData = await neatCsv(data);
+    let data2 = JSON.stringify(parsedData);
+    //console.log(data2)
+    res.send(data2)
+  });
+});
+
 
 app.listen(process.env.PORT || 4000); // .listen запускает наш web сервер, если добавить колбэк вторым параметров, то можно задать какой-то функционал после старта сервера
