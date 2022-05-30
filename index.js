@@ -228,7 +228,7 @@ app.get("/api/csvCovid/omsk", (req, res) => {
 });
 
 app.get("/api/res_valid", (req, res) => {
-  fs.readFile('../www/covid19-modeling.ru/SEIR_HCD/res_valid.csv', 'utf8', async (error, data) => {
+  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/SEIR_HCD/res_valid.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -239,7 +239,7 @@ app.get("/api/res_valid", (req, res) => {
 });
 
 app.get("/api/res_train", (req, res) => {
-  fs.readFile('../www/covid19-modeling.ru/SEIR_HCD/res_train.csv', 'utf8', async (error, data) => {
+  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/SEIR_HCD/res_train.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
