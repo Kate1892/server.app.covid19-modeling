@@ -51,7 +51,7 @@ function intervalDelFunc() {
   })
 }
 
-//setInterval(intervalDelFunc, 86400);
+setInterval(intervalDelFunc, 86400);
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
@@ -250,8 +250,8 @@ app.get("/api/res_train", (req, res) => {
   });
 });
 
-app.get("/api/forecasts", (req, res) => {
-  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_pred.csv', 'utf8', async (error, data) => {
+app.post("/api/forecasts", urlencodedParser,(req, res) => {
+  fs.readFile('./parsingSOVID_files/' + req.body.datatype + '_res_mod_pred.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -262,8 +262,9 @@ app.get("/api/forecasts", (req, res) => {
   });
 });
 
-app.get("/api/forecasts_true", (req, res) => {
-  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_true.csv', 'utf8', async (error, data) => {
+app.post("/api/forecasts_true", urlencodedParser, (req, res) => {
+  console.log(req.body.datatype)
+  fs.readFile('./parsingSOVID_files/' + req.body.datatype + '_res_mod_true.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -274,10 +275,11 @@ app.get("/api/forecasts_true", (req, res) => {
   });
 });
 
-app.get("/api/forecasts_train", (req, res) => {
-  fs.readFile('./parsingSOVID_files/2021-07-20_res_mod_train.csv', 'utf8', async (error, data) => {
+app.post("/api/forecasts_train", urlencodedParser, (req, res) => {
+  console.log('./parsingSOVID_files/' + req.body.dataT + '_res_mod_train.csv')
+  fs.readFile('./parsingSOVID_files/' + req.body.dataT + '_res_mod_train.csv', 'utf8', async (error, data) => {
     if (error) {
-      return console.log('error reading file!');
+      return console.log('error reading file');
     }
     const parsedData = await neatCsv(data);
     let data2 = JSON.stringify(parsedData);
