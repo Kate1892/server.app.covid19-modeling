@@ -80,10 +80,6 @@ app.post("/getUMsim2", urlencodedParser, (req, res) => {
   })
 })
 
-app.get("/api/n", (req, res)=>{
-  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv")
-});
-
 app.post("/data", urlencodedParser, (req, res) => {
   console.log(req.body)
   run_model(req.body.population_data, req.body.region_data, req.body.n_future_day, req.body.init_inf, req, res)
@@ -156,12 +152,9 @@ app.post("/api/curData", urlencodedParser, (req, res) => {
   });
 });
 
-app.get("/api/a", (req, res)=>{
-  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv")
-});
-
-app.get("/api/o", (req, res)=>{
-  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/omsk-region-data.csv")
+app.post("/api/CovidStaticFiles", urlencodedParser, (req, res)=>{
+  console.log("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv");
+  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv")
 });
 
 app.get("/article", (req, res)=>{
