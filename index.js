@@ -161,6 +161,10 @@ app.get("/article", (req, res)=>{
   res.download("./modeling_article.pdf")
 });
 
+app.get("/api/CovidStaticFilesAntibodies", (req, res)=>{
+  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-invitro.csv")
+});
+
 app.get("/api/csvCovid", (req, res) => {
   var data = fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8')
   res.send(data)
