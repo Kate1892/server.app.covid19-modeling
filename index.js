@@ -162,7 +162,8 @@ app.get("/article", (req, res)=>{
 });
 
 app.get("/api/CovidStaticFilesAntibodies", (req, res)=>{
-  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-invitro.csv")
+  var data = fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-invitro.csv', 'utf8')
+  res.send(data)
 });
 
 app.get("/api/csvCovid", (req, res) => {
