@@ -161,7 +161,7 @@ app.get("/article", (req, res)=>{
   res.download("./modeling_article.pdf")
 });
 
-app.get("/api/CovidStaticFilesAntibodies", (req, res)=>{
+app.get("/api/CovidStaticFilesAntibodies", urlencodedParser,(req, res)=>{
   res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-invitro.csv")
 });
 
