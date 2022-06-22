@@ -20,13 +20,6 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
-
-//const process2 = spawn('python', ['./parsingSOVID_forecasts.py']);
-//process2.stdout.on('data', (data) => {
-//  console.log("parsing is over")
-//  console.log(data.toString());
-//})
-
 //удаление ненужных файлов
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
@@ -37,11 +30,10 @@ function intervalDelFunc() {
 
   fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
-        //console.log(file)
       if (filter(file)) {
         console.log("нашли файл для удаления")
         fs.unlink(file, err => {
-           if(err) throw err; // не удалось удалить файл
+           if(err) throw err;
            console.log('Файл успешно удалён');
         })
       } else {
@@ -51,7 +43,7 @@ function intervalDelFunc() {
   })
 }
 
-setInterval(intervalDelFunc, 86400);
+setInterval(intervalDelFunc, 86400000); //два дня
 ////
 
 app.get("/deleteCurFiles", (req, res) => {
@@ -87,7 +79,7 @@ app.post("/data", urlencodedParser, (req, res) => {
 
 function run_model(tt, region_num, n_future, init_inf, req, res){
   if(region_num==1){
-    fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {
+    fs.readFile('https://covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {
       if (error) {
         return console.log('error reading file');
       }
@@ -99,7 +91,7 @@ function run_model(tt, region_num, n_future, init_inf, req, res){
       })
     })
   } else if(region_num==2){
-    fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/omsk-region-data.csv', 'utf8', async (error, data) => {
+    fs.readFile('https://covid19-modeling.ru/data/omsk-region-data.csv', 'utf8', async (error, data) => {
       if (error) {
         return console.log('error reading file');
       }
@@ -111,7 +103,7 @@ function run_model(tt, region_num, n_future, init_inf, req, res){
       })
     })
   } else if(region_num==3){
-    fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
+    fs.readFile('https://covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
       if (error) {
         return console.log('error reading file');
       }
@@ -153,8 +145,8 @@ app.post("/api/curData", urlencodedParser, (req, res) => {
 });
 
 app.post("/api/CovidStaticFiles", urlencodedParser, (req, res)=>{
-  console.log("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv");
-  res.download("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv")
+  console.log("https://covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv");
+  res.download("https://covid19-modeling.ru/data/" + req.body.region_name + "-region-data.csv")
 });
 
 app.get("/article", (req, res)=>{
@@ -162,18 +154,18 @@ app.get("/article", (req, res)=>{
 });
 
 app.get("/api/CovidStaticFilesAntibodies", (req, res)=>{
-  res.download('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-invitro.csv')
+  res.download('https://covid19-modeling.ru/data/novosibirsk-invitro.csv')
 });
 
 app.get("/api/csvCovid", (req, res) => {
-  var data = fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8')
+  var data = fs.readFile('https://covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8')
   res.send(data)
 });
 
 app.set('view engine', 'ejs');
 
 app.get("/api/csvCovid/nd", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {
+  fs.readFile('https://covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
     }
@@ -184,7 +176,7 @@ app.get("/api/csvCovid/nd", (req, res) => {
 });
 
 app.get("/api/csvCovid/altay", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
+  fs.readFile('https://covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
     }
@@ -195,7 +187,7 @@ app.get("/api/csvCovid/altay", (req, res) => {
 });
 
 app.get("/api/csvCovid/omsk", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/omsk-region-data.csv', 'utf8', async (error, data) => {
+  fs.readFile('https://covid19-modeling.ru/data/omsk-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
     }
@@ -206,7 +198,7 @@ app.get("/api/csvCovid/omsk", (req, res) => {
 });
 
 app.get("/api/res_valid", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/res_valid.csv', 'utf8', async (error, data) => {
+  fs.readFile('https://covid19-modeling.ru/data/res_valid.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -217,7 +209,7 @@ app.get("/api/res_valid", (req, res) => {
 });
 
 app.get("/api/res_train", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/res_train.csv', 'utf8', async (error, data) => {
+  fs.readFile('https://covid19-modeling.ru/data/res_train.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -261,7 +253,6 @@ app.post("/api/forecasts_train", urlencodedParser, (req, res) => {
     }
     const parsedData = await neatCsv(data);
     let data2 = JSON.stringify(parsedData);
-    //console.log(data2)
     res.send(data2)
   });
 });
