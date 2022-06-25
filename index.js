@@ -15,6 +15,8 @@ app.use(cors({
     origin: 'https://covid19-modeling.ru'
 }))
 
+Access-Control-Allow-Origin: "https://covid19-modeling.ru"
+
 const numCpu = os.cpus().length
 
 var moment = require('moment')
