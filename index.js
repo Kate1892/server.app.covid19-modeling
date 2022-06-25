@@ -13,11 +13,6 @@ var bodyParser = require('body-parser')
 const app=express() //инициализация приложения
 app.use(cors())
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://covid19-modeling.ru"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 const numCpu = os.cpus().length
 
@@ -172,7 +167,7 @@ app.get("/api/csvCovid", (req, res) => {
 
 app.set('view engine', 'ejs');
 
-app.get("/api/csvCovid/nd", (req, res,  next) => {
+app.get("/api/csvCovid/nd", (req, res) => {
   fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/novosibirsk-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
@@ -183,7 +178,7 @@ app.get("/api/csvCovid/nd", (req, res,  next) => {
   });
 });
 
-app.get("/api/csvCovid/altay", (req, res, next) => {
+app.get("/api/csvCovid/altay", (req, res) => {
   fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/altay-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
@@ -194,7 +189,7 @@ app.get("/api/csvCovid/altay", (req, res, next) => {
   });
 });
 
-app.get("/api/csvCovid/omsk", (req, res,  next) => {
+app.get("/api/csvCovid/omsk", (req, res) => {
   fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/omsk-region-data.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
