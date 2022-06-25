@@ -11,9 +11,11 @@ const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
 
 const app=express() //инициализация приложения
-app.use(cors({
-    origin: '*'
-}))
+app.use(cors())
+
+'Access-Control-Allow-Origin': '*' // * или ваш домен
+'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
+'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 
 const numCpu = os.cpus().length
 
