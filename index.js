@@ -1,15 +1,19 @@
 const express=require("express")
 const cors=require("cors")
 const fs = require('fs')
+
+//const http = require("http");
 var papaparse = require("papaparse")
 const neatCsv = require('neat-csv')
 const cluster = require('cluster')
 const os = require('os')
 const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
-const app=express() //инициализация приложения
 
-app.use(cors())
+const app=express() //инициализация приложения
+app.use(cors({
+    origin: '*'
+}))
 
 const numCpu = os.cpus().length
 
@@ -209,14 +213,22 @@ app.get("/api/res_valid", (req, res) => {
 });
 
 app.get("/api/res_train", (req, res) => {
-  fs.readFile('/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/res_train.csv', 'utf8', async (error, data) => {
+    //const file = fs.createWriteStream("res_train.csv");
+    //http.get("http://covid19-modeling.ru/data/res_train.csv", response => {
+  //    response.pipe(file);
+  //    const parsedData = neatCsv(file);
+  //    let data2 = JSON.stringify(parsedData);
+      //console.log(data2)
+  //    res.send(data2)
+  //  });
+  fs.readFile("/root/data/data.app.covid19-modeling/covid19-modeling.ru/data/res_train.csv", 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
-    const parsedData = await neatCsv(data);
+    const parsedData = await neatCsv(file);
     let data2 = JSON.stringify(parsedData);
-    //console.log(data2)
-    res.send(data2)
+    console.log(data2)
+   res.send(data2)
   });
 });
 
