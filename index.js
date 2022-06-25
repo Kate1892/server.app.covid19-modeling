@@ -12,7 +12,7 @@ var bodyParser = require('body-parser')
 
 const app=express() //инициализация приложения
 app.use(cors({
-    origin: '*'
+    origin: 'https://covid19-modeling.ru'
 }))
 
 const numCpu = os.cpus().length
