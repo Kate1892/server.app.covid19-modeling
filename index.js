@@ -11,11 +11,7 @@ const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
 
 const app=express() //инициализация приложения
-app.use(cors({
-    origin: 'https://covid19-modeling.ru'
-}))
-
-header("Access-Control-Allow-Origin: https://covid19-modeling.ru ")
+app.use(cors({ origin: true }))
 
 const numCpu = os.cpus().length
 
