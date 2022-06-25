@@ -15,7 +15,7 @@ app.use(cors({
     origin: 'https://covid19-modeling.ru'
 }))
 
-Access-Control-Allow-Origin: "https://covid19-modeling.ru"
+header("Access-Control-Allow-Origin: https://covid19-modeling.ru ")
 
 const numCpu = os.cpus().length
 
