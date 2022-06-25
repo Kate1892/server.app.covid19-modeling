@@ -11,7 +11,9 @@ const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
 
 const app=express() //инициализация приложения
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}))
 
 const numCpu = os.cpus().length
 
