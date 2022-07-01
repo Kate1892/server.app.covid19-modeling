@@ -6,7 +6,7 @@ import pandas as pd
 import pickle as p
 import json
 
-url = "https://covid19-modeling.ru/data/СOVID19_forecasts.p"
+url = "https://covid19-modeling.ru/data/COVID19_forecasts.p"
 filename="COVID19_forecasts.p"
 
 r=requests.get(url, allow_redirects=True)
@@ -14,7 +14,7 @@ open(filename, "wb").write(r.content)
 
 with open('COVID19_forecasts.p', "rb") as fh:
   df = p.load(fh)
-
+print("r")
 kk = []
 kk = df.keys()
 

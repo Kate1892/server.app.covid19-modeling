@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 
 app.get("/datesSEIR", async(req, res) => {
-  const process2 =  spawn('python', ['./convertCOVID19_f.py']);
+  const process2 =  spawn('python3.10', ['./convertCOVID19_f.py']);
   process2.stdout.on('data', (data) => {
     console.log(data.toString());
   })
