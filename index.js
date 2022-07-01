@@ -11,7 +11,7 @@ const spawn = require('child_process').spawn
 var bodyParser = require('body-parser')
 const https = require('node:https');
 
-const app=express() //инициализация приложения
+const app=express()
 app.use(cors())
 
 
@@ -25,7 +25,19 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 
 
-//удаление ненужных файлов
+app.get("/datesSEIR", async(req, res) => {
+  const process2 =  spawn('python', ['./convertCOVID19_f.py']);
+  process2.stdout.on('data', (data) => {
+    console.log(data.toString());
+  })
+  await fs.readFile('./parsingCOVID_files/dates.json', 'utf8', (error, data) => {
+    if (error) {
+      return console.log('error reading file');
+    }
+    res.send(data)
+  });
+})
+
 console.log(moment().subtract(0, 'days').format('D.M.YYYY'));
 function intervalDelFunc() {
   var data_to_delete = moment().subtract(2, 'days').format('M.D.YYYY')
@@ -50,6 +62,7 @@ function intervalDelFunc() {
 
 setInterval(intervalDelFunc, 86400000); //два дня
 ////
+
 
 app.get("/deleteCurFiles", (req, res) => {
   console.log("work")
@@ -261,7 +274,7 @@ app.get("/api/res_train", (req, resp) => {
 });
 
 app.post("/api/forecasts", urlencodedParser,(req, res) => {
-  fs.readFile('./parsingSOVID_files/' + req.body.datatype + '_res_mod_pred.csv', 'utf8', async (error, data) => {
+  fs.readFile('./parsingCOVID_files/' + req.body.datatype + '_res_mod_pred.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -274,7 +287,7 @@ app.post("/api/forecasts", urlencodedParser,(req, res) => {
 
 app.post("/api/forecasts_true", urlencodedParser, (req, res) => {
   console.log(req.body.datatype)
-  fs.readFile('./parsingSOVID_files/' + req.body.datatype + '_res_mod_true.csv', 'utf8', async (error, data) => {
+  fs.readFile('./parsingCOVID_files/' + req.body.datatype + '_res_mod_true.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file!');
     }
@@ -285,7 +298,7 @@ app.post("/api/forecasts_true", urlencodedParser, (req, res) => {
 });
 
 app.post("/api/forecasts_train", urlencodedParser, (req, res) => {
-  fs.readFile('./parsingSOVID_files/' + req.body.dataT + '_res_mod_train.csv', 'utf8', async (error, data) => {
+  fs.readFile('./parsingCOVID_files/' + req.body.dataT + '_res_mod_train.csv', 'utf8', async (error, data) => {
     if (error) {
       return console.log('error reading file');
     }
@@ -296,4 +309,4 @@ app.post("/api/forecasts_train", urlencodedParser, (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 4000); // .listen запускает наш web сервер, если добавить колбэк вторым параметров, то можно задать какой-то функционал после старта сервера
+app.listen(process.env.PORT || 4000);
