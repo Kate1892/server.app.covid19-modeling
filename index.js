@@ -1,7 +1,6 @@
 const express=require("express")
 const cors=require("cors")
 const fs = require('fs')
-
 const http = require("http");
 var papaparse = require("papaparse")
 const neatCsv = require('neat-csv')
@@ -94,65 +93,34 @@ app.post("/data", urlencodedParser, (req, res) => {
 })
 
 function run_model(tt, region_num, n_future, init_inf, req, res){
-  if(region_num==1){
-    https.get('https://covid19-modeling.ru/data/novosibirsk-region-data.csv', (res) => {
-      let data = '';
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      res.on('end',  async () => {
-        const parsedData = await neatCsv(data);
-        let data2 = JSON.stringify(parsedData);
-        console.log(data2)
-        fs.writeFile('./curData'+region_num +'.json', data2, err => {
-          if(err) throw err;
-          console.log('Файл успешно скопирован');
-        })
-      });
-    }).on('error', (e) => {
-      console.error(e);
-    });
-  } else if(region_num==2){
-    https.get('https://covid19-modeling.ru/data/omsk-region-data.csv', (res) => {
-      let data = '';
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      res.on('end',  async () => {
-        const parsedData = await neatCsv(data);
-        let data2 = JSON.stringify(parsedData);
-        console.log(data2)
-        fs.writeFile('./curData'+region_num +'.json', data2, err => {
-          if(err) throw err;
-          console.log('Файл успешно скопирован');
-        })
-      });
-    }).on('error', (e) => {
-      console.error(e);
-    });
-  } else if(region_num==3){
-    https.get('https://covid19-modeling.ru/data/altay-region-data.csv', (res) => {
-      let data = '';
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      res.on('end',  async () => {
-        const parsedData = await neatCsv(data);
-        let data2 = JSON.stringify(parsedData);
-        console.log(data2)
-        fs.writeFile('./curData'+region_num +'.json', data2, err => {
-          if(err) throw err;
-          console.log('Файл успешно скопирован');
-        })
-      });
-    }).on('error', (e) => {
-      console.error(e);
-    });
+  let cur = '';
+  if(region_num === 1) {
+    cur = 'novosibirsk'
+  } else if(region_num === 2) {
+    cur = 'omsk'
+  } else {
+    cur = 'altay'
   }
+  https.get('https://covid19-modeling.ru/data/' + cur + '-region-data.csv', (res) => {
+    let data = '';
+    res.on('data', (chunk) => {
+      data += chunk;
+    });
+    res.on('end',  async () => {
+      const parsedData = await neatCsv(data);
+      let data2 = JSON.stringify(parsedData);
+      fs.writeFile('./curData'+region_num +'.json', data2, err => {
+        if(err) throw err;
+        console.log('Файл успешно скопирован');
+      })
+    });
+  })
+  .on('error', (e) => {
+      console.error(e);
+    });
 
   return new Promise((resolve, reject) => {
     var now_data = moment().subtract(0, 'days').format('M.D.YYYY')
-
     const process = spawn('python3.10', ['./dlya_kati.py', tt, region_num, n_future, init_inf, now_data]);
     process.stdout.on('data', (data) => {
       console.log(data.toString());
